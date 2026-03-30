@@ -3,9 +3,11 @@
 {% block content %}
 <h2>Lista wydarzeń</h2>
 
-<div id="events-container">
+<div id="events-container" class="events-grid">
     Ładowanie...
 </div>
-<script src="/static/js/events.js"></script>
+{% endblock %}
 
+{% block scripts %}
+<script src="/static/js/events.js"></script>
 {% endblock %}

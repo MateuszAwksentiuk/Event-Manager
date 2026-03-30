@@ -2,6 +2,9 @@ from django.http import JsonResponse
 from .models import Event
 from django.shortcuts import render
 
+def event_detail(request, event_id):
+    return render(request, "events/event_detail.html")
+
 def index(request):
     return render(request, "events/event_list.html")
 

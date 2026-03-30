@@ -3,37 +3,31 @@ document.addEventListener("DOMContentLoaded", loadEvents);
 async function loadEvents() {
     const container = document.getElementById("events-container");
 
-    try {
-        const response = await fetch("/api/events/");
-        const events = await response.json();
+    const response = await fetch("/api/events/");
+    const events = await response.json();
 
-        container.innerHTML = "";
+    container.innerHTML = "";
 
-        if (events.length === 0) {
-            container.innerHTML = "<p>Brak wydarzeń</p>";
-            return;
-        }
+    events.forEach(event => {
+        const card = document.createElement("a");
+        card.className = "event-card";
+        card.href = `/events/${event.id}/`;
 
-        events.forEach(event => {
-            const div = document.createElement("div");
-
-            div.innerHTML = `
+        card.innerHTML = `
+            <div class="event-image">
+                <img src="${event.image || '/static/images/placeholder.png'}">
+            </div>
+            <div class="event-content">
                 <h3>${event.title}</h3>
                 <p>${event.description}</p>
-                <p>Start: ${formatDate(event.start_datetime)}</p>
-                <hr>
-            `;
+            </div>
+        `;
 
-            container.appendChild(div);
-        });
-
-    } catch (error) {
-        container.innerHTML = "<p>Błąd ładowania danych</p>";
-        console.error(error);
-    }
+        container.appendChild(card);
+    });
 }
 
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleString();
-}
+// function formatDate(dateString) {
+//     const date = new Date(dateString);
+//     return date.toLocaleString();
+// }

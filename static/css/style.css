@@ -1,0 +1,57 @@
+body {
+    background-color: #f5f6f8;
+    font-family: Arial, sans-serif;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+.event-card {
+    display: flex;
+    background: #fafafa;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+/* hover glow */
+.event-card:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+/* obrazek */
+.event-image {
+    width: 200px;
+    min-width: 200px;
+    height: 100%;
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* content */
+.event-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+.event-content p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
