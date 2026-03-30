@@ -4,7 +4,8 @@ from .models import (
     Organizer,
     EventCategory,
     Event,
-    EventParticipant
+    EventParticipant,
+    EventImage
 )
 
 
@@ -31,9 +32,13 @@ class EventParticipantInline(admin.TabularInline):
     model = EventParticipant
     extra = 0
 
+class EventImageInline(admin.TabularInline):
+    model = EventImage
+    extra = 1
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
+
     list_display = (
         "title",
         "start_datetime",
@@ -51,7 +56,7 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ("title", "description", "location")
     filter_horizontal = ("categories",)
 
-    inlines = [EventParticipantInline]
+    inlines = [EventParticipantInline, EventImageInline]
 
 
 @admin.register(EventParticipant)

@@ -79,9 +79,26 @@ class Event(models.Model):
     def clean(self):
         if bool(self.created_by_user) == bool(self.created_by_org):
             raise ValidationError("Event must have exactly one creator: either a user or an organization.")
+        # if self.pk and self.images.count() == 0:
+        #     raise ValidationError("Event must have at least one image.")
 
     def __str__(self):
         return self.title
+
+# -------------------------------
+# Zdjęcia
+# -------------------------------
+class EventImage(models.Model):
+    event = models.ForeignKey(
+        Event,
+        on_delete=models.CASCADE,
+        related_name="images"
+    )
+    image = models.ImageField(upload_to="events/")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image for {self.event.title}"
 
 # -------------------------------
 # Uczestnictwo
